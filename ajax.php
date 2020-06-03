@@ -20,7 +20,7 @@ function is_ajax() {
 
 
   function kyvadlo($uhol,$position,$r){
-    $command = 'octave -q ./scripts/kyvadlo.txt '.$position.' '.$uhol.' '.$r.' |  tr -s " " ';
+    $command = 'octave -q ./scripts/kyvadlo.txt '.$position.' '.$uhol.' '.$r.' 2>&1|  tr -s " " ';
     exec($command , $output , $return_var);
     $outputt = array();
     $count = 0;
@@ -35,11 +35,19 @@ function is_ajax() {
       $outputt[$count][$tmp] = $output[$i];
       $count += 1;
     }
+    $result = "OK";
+    if(substr( $output[0], 0, 6 ) === "error:"){
+      $result = "ERROR: ".$return_var." ";
+      foreach($output as $out){
+        $result = $result.$out;
+      }
+    }
+    logData("kyvadlo", array($uhol, $position, $r), $result);
     echo json_encode($outputt);
   }
 
   function gulicka($rychlost,$zrychlenie, $r){
-    $command = 'octave -q ./scripts/gulicka.txt '.$rychlost.' '.$zrychlenie.' '.$r.' |  tr -s " " ';
+    $command = 'octave -q ./scripts/gulicka.txt '.$rychlost.' '.$zrychlenie.' '.$r.' 2>&1|  tr -s " " ';
     exec($command , $output , $return_var);
     $outputt = array();
     $count = 0;
@@ -54,11 +62,19 @@ function is_ajax() {
       $outputt[$count][$tmp] = $output[$i];
       $count += 1;
     }
+    $result = "OK";
+    if(substr( $output[0], 0, 6 ) === "error:"){
+      $result = "ERROR: ".$return_var." ";
+      foreach($output as $out){
+        $result = $result.$out;
+      }
+    }
+    logData("gulicka", array($rychlost, $zrychlenie, $r), $result);
     echo json_encode($outputt);
   }
 
   function tlmic($x1,$x1d, $x2, $x2d, $r){
-    $command = 'octave -q ./scripts/tlmenie.txt '.$x1.' '.$x1d.' '.$x2.' '.$x2d.' '.$r.' |  tr -s " " ';
+    $command = 'octave -q ./scripts/tlmenie.txt '.$x1.' '.$x1d.' '.$x2.' '.$x2d.' '.$r.' 2>&1|  tr -s " " ';
     exec($command , $output , $return_var);
     $outputt = array();
     $count = 0;
@@ -73,11 +89,19 @@ function is_ajax() {
        $outputt[$count][$tmp] = $output[$i];
       $count += 1;
     }
+    $result = "OK";
+    if(substr( $output[0], 0, 6 ) === "error:"){
+      $result = "ERROR: ".$return_var." ";
+      foreach($output as $out){
+        $result = $result.$out;
+      }
+    }
+    logData("tlmic", array($x1, $x1d, $x2, $x2d, $r), $result);
     echo json_encode($outputt);
   }
 
   function lietadlo($alpha,$q, $theta, $r){
-    $command = 'octave -q ./scripts/lietadlo.txt '.$alpha.' '.$q.' '.$theta.' '.$r.' |  tr -s " " ';
+    $command = 'octave -q ./scripts/lietadlo.txt '.$alpha.' '.$q.' '.$theta.' '.$r.' 2>&1|  tr -s " " ';
     exec($command , $output , $return_var);
     $outputt = array();
     $count = 0;
@@ -92,6 +116,14 @@ function is_ajax() {
        $outputt[$count][$tmp] = $output[$i];
       $count += 1;
     }
+    $result = "OK";
+    if(substr( $output[0], 0, 6 ) === "error:"){
+      $result = "ERROR: ".$return_var." ";
+      foreach($output as $out){
+        $result = $result.$out;
+      }
+    }
+    logData("lietadlo", array($alpha, $q, $tetha, $r), $result);
     echo json_encode($outputt);
   }
 
@@ -103,7 +135,30 @@ function is_ajax() {
     
     $command = 'octave -q ./scripts/test.txt ';
     exec($command , $output , $return_var);
+    $result = "OK";
+    if(substr( $output[0], 0, 6 ) === "error:"){
+      $result = "ERROR: ".$return_var." ";
+      foreach($output as $out){
+        $result = $result.$out;
+      }
+    }
+    logData("calcul", array($eval), $result);
     echo json_encode($output);
+  }
+
+  function logData($name, $vars, $status){
+
+    $logData = array ();
+    array_push($logData, $name);
+    foreach($vars as $var){
+      array_push($logData, $var);
+    } 
+    array_push($logData, $status);
+    $fp = fopen('./logs/'.date("Ymd").'.csv', 'a');
+  
+    fputcsv($fp, $logData, ",", '"');
+    
+    fclose($fp);
   }
 
 ?>
