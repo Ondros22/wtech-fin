@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 'on');
+//error_reporting(E_ALL);
+//ini_set('display_errors', 'on');
 if (is_ajax()) {
   if (isset($_POST["action"]) && !empty($_POST["action"])) { 
     $action = $_POST["action"];
