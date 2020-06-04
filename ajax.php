@@ -10,6 +10,7 @@ if (is_ajax()) {
       case "tlmic": tlmic($_POST['x1'],$_POST['x1d'],$_POST['x2'],$_POST['x2d'],$_POST['r']); break;
       case "lietadlo": lietadlo($_POST['alpha'],$_POST['q'],$_POST['theta'],$_POST['r']); break;
       case "calcul": calcul($_POST['txt']); break;
+      case 'select': array_to_csv_download($_POST['name']); break;
     }
   }
 }
@@ -149,6 +150,7 @@ function is_ajax() {
   function logData($name, $vars, $status){
 
     $logData = array ();
+    array_push($logData, date("F j, Y, g:i a"));
     array_push($logData, $name);
     foreach($vars as $var){
       array_push($logData, $var);
@@ -160,5 +162,17 @@ function is_ajax() {
     
     fclose($fp);
   }
+
+  
+function array_to_csv_download($name) {
+  header('Content-Type: application/csv');
+  header('Content-Disposition: attachment; filename="'.$name.'";');
+  header('Expires: 0');
+  header('FileName: '.$name);
+  header('Cache-Control: must-revalidate');
+  header('Pragma: public');
+  header('Content-Length: ' . filesize('file.txt'));
+  readfile('./logs/'.$name);
+}  
 
 ?>
