@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="910aee5b-e68f-4e3b-92bc-6bd4796388cc" name="asd" url="http://147.175.121.210">
+        <fileTransfer host="147.175.121.210" port="2297" rootFolder="/home/xmoricz/public_html" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="2297" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
