@@ -1,9 +1,0 @@
-kyvadlo,-80,20,OK
-kyvadlo,50,50,OK
-kyvadlo,50,50,"ERROR: "
-kyvadlo,50,50,"ERROR: 0 "
-kyvadlo,50,50,OK
-kyvadlo,50,20,OK
-kyvadlo,50,20,"ERROR: 0 error: arglist(3): out of bound 2error: called from ./scripts/kyvadlo.txt at line 8 column 2error: writing file '/var/www/.octave_hist': Permission deniederror: ignoring const octave::execution_exception& while preparing to exit"
-kyvadlo,50,20,"ERROR: 0 error: arglist(3): out of bound 2error: called from ./scripts/kyvadlo.txt at line 8 column 2error: writing file '/var/www/.octave_hist': Permission deniederror: ignoring const octave::execution_exception& while preparing to exit"
-kyvadlo,50,20,OK

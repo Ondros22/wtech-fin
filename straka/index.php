@@ -1,6 +1,10 @@
 <?php
     if($_GET['lang'] == 'SK') require_once "./lang/lang_sk.php";
     else require_once "./lang/lang_en.php";
+
+    require_once "../conf.php";
+    if($kyvadlo_speed < 0) $kyvadlo_speed = 0;
+    else if($kyvadlo_speed > 1000)$kyvadlo_speed = 1000;
 ?>
 <html>
     <head>
@@ -13,6 +17,9 @@
         </script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
         <link rel="stylesheet" href="style.css">
+        <script>
+            var key ="<?php echo $apiKey?>";
+        </script>
         <script src="run.js"></script>
     </head>
     <body>
@@ -41,7 +48,7 @@
         <label for="r" style="margin-top:5px">r</label>
         <input type="number" name="r" id="r" min="-1" max="1" value="0">
         <label for="myRange" style="margin-top:5px"><?php echo RYCHLOST;?></label>
-        <input type="range" min="0" max="1000" value="0" class="slider" id="myRange" name="myRange" style="margin-top:10px">
+        <input type="range" min="0" max="1000" value="<?php echo $kyvadlo_speed?>" class="slider" id="myRange" name="myRange" style="margin-top:10px">
         <input type="submit" value="Start" id="btn">
         <label for="animacia" style="margin-top:5px"><?php echo ANIMACIA;?></label>
         <input type="checkbox" name="animacia" id="animacia" checked style="margin-top:10px">

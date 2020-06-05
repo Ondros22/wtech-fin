@@ -1,6 +1,18 @@
 <?php
-//error_reporting(E_ALL);
-//ini_set('display_errors', 'on');
+error_reporting(E_ALL);
+ini_set('display_errors', 'on');
+
+require __DIR__.'/vendor/autoload.php';
+require_once "./conf.php";
+
+use Spipu\Html2Pdf\Html2Pdf;
+
+if($_POST['key'] != $apiKey) {
+  header('HTTP/1.0 401 Unauthorized');
+  http_response_code (401);
+  exit;
+}
+
 if (is_ajax()) {
   if (isset($_POST["action"]) && !empty($_POST["action"])) { 
     $action = $_POST["action"];
@@ -12,6 +24,10 @@ if (is_ajax()) {
       case "calcul": calcul($_POST['txt']); break;
       case "pdfLog": pdf_download($_POST['name']); break;
       case 'select': array_to_csv_download($_POST['name']); break;
+      default: 
+        header('HTTP/1.0 401 Bad Request');
+        http_response_code (400);
+        exit;
     }
   }
 }
@@ -44,7 +60,7 @@ function is_ajax() {
         $result = $result.$out;
       }
     }
-    logData("kyvadlo", array($uhol, $position, $r), $result);
+    logData("kyvadlo", array($uhol, $position, $r,"",""), $result);
     echo json_encode($outputt);
   }
 
@@ -71,7 +87,7 @@ function is_ajax() {
         $result = $result.$out;
       }
     }
-    logData("gulicka", array($rychlost, $zrychlenie, $r), $result);
+    logData("gulicka", array($rychlost, $zrychlenie, $r,"",""), $result);
     echo json_encode($outputt);
   }
 
@@ -125,7 +141,7 @@ function is_ajax() {
         $result = $result.$out;
       }
     }
-    logData("lietadlo", array($alpha, $q, $theta, $r), $result);
+    logData("lietadlo", array($alpha, $q, $tetha, $r,""), $result);
     echo json_encode($outputt);
   }
 
@@ -144,7 +160,7 @@ function is_ajax() {
         $result = $result.$out;
       }
     }
-    logData("calcul", array($eval), $result);
+    logData("calcul", array($eval,"","","",""), $result);
     echo json_encode($output);
   }
 
@@ -172,9 +188,8 @@ function array_to_csv_download($name) {
   header('FileName: '.$name);
   header('Cache-Control: must-revalidate');
   header('Pragma: public');
-  header('Content-Length: ' . filesize('file.txt'));
   readfile('./logs/'.$name);
-}  
+} 
 
 function pdf_download($name) {
   header('Content-Type: application/pdf');

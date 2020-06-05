@@ -47,9 +47,9 @@
             window.URL.revokeObjectURL(url);
             }
         });
-        }  
-
-         function pdfDownload(a){
+        }
+        
+        function pdfDownload(a){
             var data = {
                 "action": "pdfLog",
                 "name": a.getAttribute("value")

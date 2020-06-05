@@ -46,7 +46,7 @@ $(document).ready(function(){
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
-
+    
     $('#btn').click(function(event){
         event.preventDefault();
         counter++;
@@ -54,7 +54,8 @@ $(document).ready(function(){
                 "action": "kyvadlo",
                 "uhol": $('#angle').val(),
                 "position":(parseInt($('#position').val())),
-                "r": (parseFloat($('#r').val()))
+                "r": (parseFloat($('#r').val())),
+                "key":key
         };
             $.ajax({
                 type: "POST",
