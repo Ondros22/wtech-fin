@@ -141,7 +141,7 @@ function is_ajax() {
         $result = $result.$out;
       }
     }
-    logData("lietadlo", array($alpha, $q, $tetha, $r,""), $result);
+    logData("lietadlo", array($alpha, $q, $theta, $r,""), $result);
     echo json_encode($outputt);
   }
 
