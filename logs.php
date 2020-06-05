@@ -48,6 +48,36 @@
             }
         });
         }  
+
+         function pdfDownload(a){
+            var data = {
+                "action": "pdfLog",
+                "name": a.getAttribute("value")
+        };
+        $.ajax({
+            url: 'http://147.175.121.210:8233/final_zadanie/ajax.php?',
+            type: 'POST',
+            data: data,
+        }).done(function (data, textStatus, request) {
+            var blob = new Blob([data]);
+
+            console.log(request.getAllResponseHeaders())
+            var fileName = request.getResponseHeader('filename');
+
+            if (window.navigator && window.navigator.msSaveOrOpenBlob) { // for IE
+            window.navigator.msSaveOrOpenBlob(blob, fileName);
+            } else {
+            var url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            }
+        });
+        }
     </script>
 </head>
 <body>
@@ -72,7 +102,7 @@
                 foreach($arr as $file){
                     if($file == "." || $file == "..") continue;
                     echo "<tr>";
-                    echo "<td style='padding-left:25px;'>".$file."</td><td class='link' onclick='csvDownload(this);' value='".$file."'>CSV</td><td class='link'>PDF</td>";
+                    echo "<td style='padding-left:25px;'>".$file."</td><td class='link' onclick='csvDownload(this);' value='".$file."'>CSV</td><td class='link' onclick='pdfDownload(this);' value='".$file."'>PDF</td>";
                     echo "</tr>";
                 }
             ?>
