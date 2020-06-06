@@ -1,13 +1,17 @@
 
+<?php
+    if($_GET['lang'] == 'SK') require_once "./lang/lang_sk.php";
+    else require_once "./lang/lang_en.php";
 
+    $apiKey = "brutalny_api_kluc_123";
+    
+?>
 
 <html><head>
-        <title>Gulička na tyči</title> <!--?angle=50&position=50&animacia=on&graf=on&fbclid=IwAR01LjwJXAaQ5X5sBza0ReLMx6Khp43f1csWjACEdaym-XBk6BmVak1SMsc -->
+        <title>Strba - Gulička na tyči</title> 
         <style>
             #string{
-                transition: 1050ms all linear;
-                
- 
+                transition: 1050ms all linear; 
             }
             
             #grafy{
@@ -30,8 +34,25 @@
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+
+    <script>
+            var key ="<?php echo $apiKey?>";
+    </script>
+    
     </head>
     <body>
+
+    <div id="nav" class="u-full-width">
+        <div id = "left">
+            <a href="http://147.175.121.210:8233/final_zadanie/?lang=<?php echo $_GET['lang']?>"><button><?php echo DOMOV?></button></a>
+        </div>
+        <div id="right">
+            <a href="http://147.175.121.210:8233/final_zadanie/strba/?lang=SK"><button>SK</button></a>
+            <a href="http://147.175.121.210:8233/final_zadanie/strba/?lang=EN"><button>EN</button></a>
+        </div>
+    </div>
+
+
     <svg id="scene" viewBox="0 0 100 100" width="100%" height="200px">
         
         <line id="string" x1="0" y1="100" x2="0" y2="70" stroke="black" stroke-width="4" ></line>
