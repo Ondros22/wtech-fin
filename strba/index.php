@@ -3,8 +3,8 @@
     if($_GET['lang'] == 'SK') require_once "./lang/lang_sk.php";
     else require_once "./lang/lang_en.php";
 
-    $apiKey = "brutalny_api_kluc_123";
-    
+    //$apiKey = "brutalny_api_kluc_123";
+    require_once "../conf.php";
 ?>
 
 <html><head>
