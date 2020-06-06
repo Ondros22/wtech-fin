@@ -182,7 +182,7 @@
                     "uhol": $('#angle').val(),
                     "position":(parseInt($('#position').val())),
             };
-              $.get('http://147.175.121.210:8233/final_zadanie/strba/index.php/<?php if(isset($_POST['name'])){echo $_POST['name'];}else{echo '0';}?> ' )
+              $.get('http://147.175.121.210:8233/final_zadanie/strba/ScriptOCT.php/<?php if(isset($_POST['name'])){echo $_POST['name'];}else{echo '0';}?> ' )
               .done((dataa)  =>  
               {
                 const results = JSON.parse(dataa);
