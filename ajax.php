@@ -1,6 +1,18 @@
 <?php
-//error_reporting(E_ALL);
-//ini_set('display_errors', 'on');
+error_reporting(E_ALL);
+ini_set('display_errors', 'on');
+
+require __DIR__.'/vendor/autoload.php';
+require_once "./conf.php";
+
+use Spipu\Html2Pdf\Html2Pdf;
+
+if($_POST['key'] != $apiKey) {
+  header('HTTP/1.0 401 Unauthorized');
+  http_response_code (401);
+  exit;
+}
+
 if (is_ajax()) {
   if (isset($_POST["action"]) && !empty($_POST["action"])) { 
     $action = $_POST["action"];
@@ -10,7 +22,12 @@ if (is_ajax()) {
       case "tlmic": tlmic($_POST['x1'],$_POST['x1d'],$_POST['x2'],$_POST['x2d'],$_POST['r']); break;
       case "lietadlo": lietadlo($_POST['alpha'],$_POST['q'],$_POST['theta'],$_POST['r']); break;
       case "calcul": calcul($_POST['txt']); break;
+      case "pdfLog": pdf_download($_POST['name']); break;
       case 'select': array_to_csv_download($_POST['name']); break;
+      default: 
+        header('HTTP/1.0 401 Bad Request');
+        http_response_code (400);
+        exit;
     }
   }
 }
@@ -43,7 +60,7 @@ function is_ajax() {
         $result = $result.$out;
       }
     }
-    logData("kyvadlo", array($uhol, $position, $r), $result);
+    logData("kyvadlo", array($uhol, $position, $r,"",""), $result);
     echo json_encode($outputt);
   }
 
@@ -70,7 +87,7 @@ function is_ajax() {
         $result = $result.$out;
       }
     }
-    logData("gulicka", array($rychlost, $zrychlenie, $r), $result);
+    logData("gulicka", array($rychlost, $zrychlenie, $r,"",""), $result);
     echo json_encode($outputt);
   }
 
@@ -124,7 +141,7 @@ function is_ajax() {
         $result = $result.$out;
       }
     }
-    logData("lietadlo", array($alpha, $q, $theta, $r), $result);
+    logData("lietadlo", array($alpha, $q, $theta, $r,""), $result);
     echo json_encode($outputt);
   }
 
@@ -143,7 +160,7 @@ function is_ajax() {
         $result = $result.$out;
       }
     }
-    logData("calcul", array($eval), $result);
+    logData("calcul", array($eval,"","","",""), $result);
     echo json_encode($output);
   }
 
@@ -171,8 +188,44 @@ function array_to_csv_download($name) {
   header('FileName: '.$name);
   header('Cache-Control: must-revalidate');
   header('Pragma: public');
-  header('Content-Length: ' . filesize('file.txt'));
   readfile('./logs/'.$name);
-}  
+} 
+
+function pdf_download($name) {
+  header('Content-Type: application/pdf');
+  header('Content-Disposition: attachment; filename="'.$name.'";');
+  header('Expires: 0');
+  header('FileName: '.substr($name, 0, -3).'pdf');
+  header('Cache-Control: must-revalidate');
+  header('Pragma: public');
+
+  
+  $content = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+			"http://www.w3.org/TR/html4/loose.dtd">
+			<html>
+			<head>
+			<title>User Information Template</title></head>
+			<body>';
+  $content.= '<table border="1" cellpadding="0" cellspacing="0" style="width:500px;border:1px dotted #ccc;margin-top:0;margin-left:auto;margin-right:auto;font-family:arial;margin-bottom:10px;" >';
+
+  $file = fopen('./logs/'.$name, 'r');
+  while (($line = fgetcsv($file)) !== FALSE) {
+    $content .= "<tr>";
+    foreach($line as $d){
+      $content .= '<td style="width: 100px;font-family:arial;font-weight:bold;font-size:14px;color:#666;"td>'.$d.'</td>';
+    } 
+    $content .= "</tr>";
+  }
+  fclose($file);
+
+  $content .= "</table>";
+  $content.='</body></html>';
+
+  $html2pdf = new Html2Pdf('L', 'A4', 'en', false, 'UTF-8', array(5, 5, 5, 8), true);
+  $html2pdf->writeHTML($content);
+  $tetst =$html2pdf->output(substr($name, 0, -3).'pdf', 'S');
+  
+  echo $tetst;
+  } 
 
 ?>

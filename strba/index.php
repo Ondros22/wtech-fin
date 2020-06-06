@@ -189,8 +189,7 @@
                 
                         var mid = 50;
                         var test = counter;
-                        
-                           
+
                         
 
                 i=0;
