@@ -1,11 +1,35 @@
-$(document).ready(function () {
+$(document).ready(function (keyframes, options) {
     $(document).on('input','#graph',function () {
         $('#chart1').toggle();
         $('#chart2').toggle();
     });
 
+    $(document).on('input','#suspensionAnime',function () {
+        $('#anime').toggle();
+    });
+
     var ctx = document.getElementById('chart1');
     var ctx2 = document.getElementById('chart2');
+
+    var wheel = new fabric.Circle({
+        left: 94,
+        top: 100,
+        radius:25,
+        fill:'silver'
+    });
+
+    var suspension = new fabric.Rect({
+        left: 115,
+        top: 50,
+        width: 10,
+        height: 70,
+        fill:'black'
+    });
+    suspension.set('selectable',false);
+    wheel.set('selectable',false);
+    var canvasAnimation = new fabric.Canvas('animation');
+    canvasAnimation.add(suspension,wheel);
+
 
     function addData(chart, data,label) {
         chart.data.labels.push(label);
@@ -27,12 +51,12 @@ $(document).ready(function () {
         data:{
             labels: [],
             datasets: [{
-                label: 'Dolne teleso',
+                label: $('#lowerko').val(),
                 data:[0],
                 id: 'jedna',
                 borderColor: "blue"
             },{
-                label: 'Horne teleso',
+                label: $('#upperko').val(),
                 data:[],
                 backgroundColor: "rgba(225,0,0,0.4)",
                 fill:false,
@@ -48,8 +72,9 @@ $(document).ready(function () {
         type: 'line',
         data:{
             datasets: [{
-                label: 'Tlmenie',
-                data:[]
+                label: $('#suspi').val(),
+                data:[],
+                borderColor: "black",
             }]},
         options: {
             maintainAspectRatio: false,
@@ -61,26 +86,28 @@ $(document).ready(function () {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
+//////////////////////////////////////////////////////////////ajax
     $('#btn').click(function (event) {
         var myChart2 = new Chart(ctx2,{
             type: 'line',
             data:{
                 labels: [],
                 datasets: [{
-                    label: 'Dolne teleso',
+                    label: $('#lowerko').val(),
                     borderWidth:1,
                     pointBorderWidth: 0,
-                    pointRadius:0.5,
+                    pointRadius:1,
                     data:[0],
                     id: 'jedna',
                     backgroundColor: "rgba(0,0,255,0.4)",
                     fill: false,
                     borderColor: "blue"
                 },{
-                    label: 'Horne teleso',
+                    label: $('#upperko').val(),
                     data:[],
                     backgroundColor: "rgba(225,0,0,0.4)",
                     fill:false,
+                    pointRadius:1,
                     borderColor: "red",
                     id: 'dva'
                 }]},
@@ -93,8 +120,10 @@ $(document).ready(function () {
             type: 'line',
             data:{
                 datasets: [{
-                    label: 'Tlmenie',
-                    data:[]
+                    label: $('#suspi').val(),
+                    data:[],
+                    borderColor: "black",
+                    pointRadius:1,
                 }]},
             options: {
                 maintainAspectRatio: false,
@@ -120,17 +149,24 @@ $(document).ready(function () {
             //url:"https://147.175.121.210:8233/final_zadanie/ajax.php?",
             complete: async function(dattas){
                 console.log(dattas);
+                var jj=0;
                 for (i=0;i<dattas.responseJSON.length;i++){
                     console.log("1 udaj: "+dattas.responseJSON[i][0]);
                     console.log("2 udaj: "+dattas.responseJSON[i][1]);
                     console.log("3 udaj: "+dattas.responseJSON[i][2]);
                     console.log(" ");
+
                     if (dattas.responseJSON[i][0] === undefined){
                         break;
                     }
+
                     addData(myChart,parseFloat(dattas.responseJSON[i][1]),dattas.responseJSON[i][2]);
                     addData2(myChart2,parseFloat(dattas.responseJSON[i][1]),parseFloat(dattas.responseJSON[i][0]),dattas.responseJSON[i][2]);
 
+                    var lol =parseFloat(dattas.responseJSON[i][1]);
+
+                    suspension.set('top',50+(-1*lol*4000));
+                    canvasAnimation.renderAll();
                     await sleep(100);
                 }
             }
