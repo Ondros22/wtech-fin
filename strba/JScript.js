@@ -1,3 +1,4 @@
+$(document).ready(function(){
 var speed = 0;
 var counter = 0;
 
@@ -92,15 +93,25 @@ var counter = 0;
             counter++;
             var data = {
                     "action": "gulicka",
-                    "rychlost": parseInt($('#position').val()),
-                    "zrychlenie":(parseInt($('#position').val())),
-                    "r":(parseInt($('#position').val())),
+                    "rychlost": (parseInt($('#rychlost').val())),
+                    "zrychlenie":(parseInt($('#zrychlenie').val())),
+                    "r":(parseFloat($('#r').val())),
                     "key":key
             };
-              $.get('http://147.175.121.210:8233/final_zadanie/strba/ScriptOCT.php/' )
-              .done((dataa)  =>  
-              {
-                const results = JSON.parse(dataa);
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    data: data,
+                    url:"http://147.175.121.210:8233/final_zadanie/ajax.php?",
+                    complete: async function(datta) {
+                        
+                        
+                    console.log(datta);
+                    var mid = 50;
+                    var test = counter;
+
+                        
+                         const results = JSON.parse(datta);
                 
                         var mid = 50;
                         var test = counter;
@@ -197,14 +208,18 @@ var counter = 0;
 
                      sleep(speed);
 
-
+                        
                     //console.log($_POST['parameter']);
                     //console.log($MojFloat3);
                     
-                    $('#pecko').append(`<li>${element} : ${results[element]}</li>`);
-                });
-              })
-              .fail((error) => console.log(error))
-              .always(() => console.log('done'));
+                    //$('#pecko').append(`<li>${element} : ${results[element]}</li>`);
+                } 
+
+                );
+              }
+            })
+              
              
         });
+        
+    });

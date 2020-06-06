@@ -1,0 +1,26 @@
+
+
+#right{
+    float: right;
+    margin-right: 3%;
+}
+
+#left{
+    float: left;
+    margin-left: 3%;
+}
+
+body{
+    height: 100%;
+}
+
+header{
+    height: 50px;
+    margin-bottom: 20px;
+}
+input, label{
+    float:left;
+}
+pre{
+    display: block;
+}
