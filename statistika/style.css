@@ -1,0 +1,13 @@
+#right{
+    float: right;
+    margin-right: 3%;
+}
+
+#left{
+    float: left;
+    margin-left: 3%;
+}
+
+header{
+    height: 50px;
+}

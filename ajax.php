@@ -5,6 +5,8 @@ ini_set('display_errors', 'on');
 require __DIR__.'/vendor/autoload.php';
 require_once "./conf.php";
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 use Spipu\Html2Pdf\Html2Pdf;
 
 if($_POST['key'] != $apiKey) {
@@ -23,6 +25,8 @@ if (is_ajax()) {
       case "lietadlo": lietadlo($_POST['alpha'],$_POST['q'],$_POST['theta'],$_POST['r']); break;
       case "calcul": calcul($_POST['txt']); break;
       case "pdfLog": pdf_download($_POST['name']); break;
+      case "statistika": statistika($_POST['lang']); break;
+      case "mail": sendMail($_POST['to'],$_POST['data']); break;
       case 'select': array_to_csv_download($_POST['name']); break;
       default: 
         header('HTTP/1.0 401 Bad Request');
@@ -141,7 +145,7 @@ function is_ajax() {
         $result = $result.$out;
       }
     }
-    logData("lietadlo", array($alpha, $q, $theta, $r,""), $result);
+    logData("lietadlo", array($alpha, $q, $tetha, $r,""), $result);
     echo json_encode($outputt);
   }
 
@@ -191,6 +195,46 @@ function array_to_csv_download($name) {
   readfile('./logs/'.$name);
 } 
 
+function statistika($lang) {
+  $kyvadlo = 0;
+  $lietadlo = 0;
+  $calcul = 0;
+  $tlmic = 0;
+  $gula = 0;
+
+  $arr = scandir("./logs");
+
+  foreach($arr as $file){
+    if($file == '.' || $file == '..' ) continue;
+    $file = fopen('./logs/'.$file, 'r');
+    while (($line = fgetcsv($file)) !== FALSE) {
+      
+      if($line[1] == "kyvadlo") $kyvadlo +=1 ;
+      if($line[1] == "lietadlo") $lietadlo +=1 ;
+      if($line[1] == "calcul") $calcul +=1 ;
+      if($line[1] == "tlmic") $tlmic +=1 ;
+      if($line[1] == "gulicka") $gula +=1 ;
+    }
+    fclose($file);
+  }
+
+  $out = array();
+  if($lang == 'SK'){
+    array_push($out, array('y'=>$kyvadlo , 'label'=> "Kyvadlo" ));
+    array_push($out, array('y'=>$lietadlo , 'label'=> "Lietadlo" ));
+    array_push($out, array('y'=>$calcul , 'label'=> "Calcul" ));
+    array_push($out, array('y'=>$tlmic , 'label'=> "Tlmic" ));
+    array_push($out, array('y'=>$gula , 'label'=> "Gulôčka" ));
+  } else {
+    array_push($out, array('y'=>$kyvadlo , 'label'=> "Pendulum" ));
+    array_push($out, array('y'=>$lietadlo , 'label'=> "Plane" ));
+    array_push($out, array('y'=>$calcul , 'label'=> "Calcul" ));
+    array_push($out, array('y'=>$tlmic , 'label'=> "Suspension" ));
+    array_push($out, array('y'=>$gula , 'label'=> "Ball" ));
+  }
+  echo json_encode($out);
+} 
+
 function pdf_download($name) {
   header('Content-Type: application/pdf');
   header('Content-Disposition: attachment; filename="'.$name.'";');
@@ -228,4 +272,36 @@ function pdf_download($name) {
   echo $tetst;
   } 
 
+function sendMail($to, $data){
+  $mail = new PHPMailer();
+  $mail->IsSMTP();
+  $mail->Mailer = "smtp";
+
+  $mail->SMTPDebug  = 1;  
+  $mail->SMTPAuth   = TRUE;
+  $mail->SMTPSecure = "tls";
+  $mail->Port       = 587;
+  $mail->Host       = "smtp.gmail.com";
+  $mail->Username   = "wtech.finzadanie@gmail.com";
+  $mail->Password   = "htaccess123";
+
+  $mail->IsHTML(true);
+  $mail->AddAddress($to);
+  $mail->SetFrom("wtech.finzadanie@gmail.com");
+  $mail->Subject = "Wtech statistika navsetevnosti";
+  $data = json_decode($data);
+  $content = '<table><thead><th>Uloha</th><th>Pocet kliknuti</th></thead><tbody></tbody>';
+  foreach($data as $d){
+    $content .= "<tr><td>".$d->label."</td><td>".$d->y."</td></tr>";
+  }
+  $content .= "</tbody></table>";
+  ob_clean();
+  $mail->MsgHTML($content); 
+  if(!$mail->Send()) {
+    echo "Error while sending Email.";
+    var_dump($mail);
+  } else {
+    echo "Email sent successfully";
+  }
+}
 ?>
