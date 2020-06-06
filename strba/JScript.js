@@ -1,3 +1,4 @@
+$(document).ready(function(){
 var speed = 0;
 var counter = 0;
 
@@ -208,3 +209,4 @@ var counter = 0;
               .always(() => console.log('done'));
              
         });
+    });
