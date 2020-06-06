@@ -20,18 +20,23 @@
             display: flex;
             justify-content: center;
         }
-        canvas{
-            width: 50rem;
-            height: 400px;
+
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 30vh;
+            width: 30vw;
         }
+
     </style>
 </head>
 <body>
 
-<div class="center">
-<canvas id="chart1" ></canvas>
+
+    <div class="chart-container center" >
+<canvas id="chart1"  ></canvas>
 <canvas id="chart2"></canvas>
-</div>
+    </div>
 
 <form action="">
     <label for="graph">Graph toggle</label>

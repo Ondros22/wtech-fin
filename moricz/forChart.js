@@ -40,7 +40,7 @@ $(document).ready(function () {
                 id: 'dva'
             }]},
         options: {
-            responsive: false
+            maintainAspectRatio: false,
         }
     });
 
@@ -52,7 +52,8 @@ $(document).ready(function () {
                 data:[]
             }]},
         options: {
-            responsive: false,
+            maintainAspectRatio: false,
+
         }
     });
 
@@ -84,8 +85,7 @@ $(document).ready(function () {
                     id: 'dva'
                 }]},
             options: {
-                responsive: false,
-
+                maintainAspectRatio: false,
             },
         });
 
@@ -97,7 +97,7 @@ $(document).ready(function () {
                     data:[]
                 }]},
             options: {
-                responsive: false,
+                maintainAspectRatio: false,
             }
         });
          event.preventDefault();
@@ -131,7 +131,7 @@ $(document).ready(function () {
                     addData(myChart,parseFloat(dattas.responseJSON[i][1]),dattas.responseJSON[i][2]);
                     addData2(myChart2,parseFloat(dattas.responseJSON[i][1]),parseFloat(dattas.responseJSON[i][0]),dattas.responseJSON[i][2]);
 
-                  //  await sleep(100);
+                    await sleep(100);
                 }
             }
         })
