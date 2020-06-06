@@ -37,8 +37,12 @@
 
     <script>
             var key ="<?php echo $apiKey?>";
+            
     </script>
-    
+
+    <script src="JScript.js"></script>
+
+
     </head>
     <body>
 
@@ -74,7 +78,10 @@
 
 
     <form >
-    
+        
+        <label for="angle">Zadajte r(nová poloha Guličky [-25,25])</label>
+        <input type="number" min="-25" max="25" name="name" value = 0>
+
         <label for="angle">Spomalenie animácie</label>
         <input type="range" min="0" max="1000" value="0" class="slider" id="myRange">
         
@@ -94,18 +101,7 @@
     
     <iframe name="hiddenFrame" width="0" height="0"  style="display: none;"></iframe>
         <script>
-         //------------------CSV-------------------------------
-         $(document).ready(function(){
-            $('.button').click(function(){
-                var clickBtnValue = $(this).val();
-                var ajaxurl = 'some.php',
-                data =  {'action': clickBtnValue};
-                $.post(ajaxurl, data, function (response) {
-                    // Response div goes here.
-                    alert("action performed successfully");
-                });
-            });
-        });
+         
          //-----------------------------------------------------   
         var speed = 0;
         var counter = 0;
