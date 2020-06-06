@@ -92,12 +92,12 @@ var counter = 0;
             counter++;
             var data = {
                     "action": "gulicka",
-                    "rychlost": parseInt($('#position').val()),
-                    "zrychlenie":(parseInt($('#position').val())),
-                    "r":(parseInt($('#position').val())),
+                    "rychlost": parseInt($('#rychlost').val()),
+                    "zrychlenie":(parseInt($('#zrychlenie').val())),
+                    "r":(parseInt($('#r').val())),
                     "key":key
             };
-              $.get('http://147.175.121.210:8233/final_zadanie/strba/ScriptOCT.php/' )
+              $.get('http://147.175.121.210:8233/final_zadanie/ajax.php?' )
               .done((dataa)  =>  
               {
                 const results = JSON.parse(dataa);
@@ -201,7 +201,7 @@ var counter = 0;
                     //console.log($_POST['parameter']);
                     //console.log($MojFloat3);
                     
-                    $('#pecko').append(`<li>${element} : ${results[element]}</li>`);
+                    //$('#pecko').append(`<li>${element} : ${results[element]}</li>`);
                 });
               })
               .fail((error) => console.log(error))
