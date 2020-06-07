@@ -12,14 +12,14 @@ $(document).ready(function (keyframes, options) {
     var ctx2 = document.getElementById('chart2');
 
     var wheel = new fabric.Circle({
-        left: 94,
+        left: 114,
         top: 100,
         radius:25,
         fill:'silver'
     });
 
     var suspension = new fabric.Rect({
-        left: 115,
+        left: 135,
         top: 50,
         width: 10,
         height: 70,
@@ -75,6 +75,8 @@ $(document).ready(function (keyframes, options) {
                 label: $('#suspi').val(),
                 data:[],
                 borderColor: "black",
+                backgroundColor:"rgba(0,0,0,0.4)",
+                fill:false
             }]},
         options: {
             maintainAspectRatio: false,
@@ -84,6 +86,17 @@ $(document).ready(function (keyframes, options) {
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function validateR(){
+        var x = document.forms["myForm"]["r"].value;
+        if (x < -0.5 || x > 0.5){
+            document.getElementById('error').style.visibility="visible";
+            return false;
+        }else {
+            document.getElementById('error').style.visibility="hidden";
+            return true;
+        }
     }
 
 //////////////////////////////////////////////////////////////ajax
@@ -123,13 +136,15 @@ $(document).ready(function (keyframes, options) {
                     label: $('#suspi').val(),
                     data:[],
                     borderColor: "black",
+                    backgroundColor:"rgba(0,0,0,0.4)",
                     pointRadius:1,
+                    fill:false
                 }]},
             options: {
                 maintainAspectRatio: false,
             }
         });
-         event.preventDefault();
+        event.preventDefault();
 
         var data = {
             "action" : "tlmic",
@@ -140,7 +155,7 @@ $(document).ready(function (keyframes, options) {
             "r":parseFloat($('#rSize').val()),
             "key": "brutalny_api_kluc_123"
         };
-
+        if (validateR()){
         $.ajax({
             type: "POST",
             dataType: "json",
@@ -163,13 +178,15 @@ $(document).ready(function (keyframes, options) {
                     addData(myChart,parseFloat(dattas.responseJSON[i][1]),dattas.responseJSON[i][2]);
                     addData2(myChart2,parseFloat(dattas.responseJSON[i][1]),parseFloat(dattas.responseJSON[i][0]),dattas.responseJSON[i][2]);
 
-                    var lol =parseFloat(dattas.responseJSON[i][1]);
+                    var posi =parseFloat(dattas.responseJSON[i][1]);
 
-                    suspension.set('top',50+(-1*lol*4000));
+                    suspension.set('top',50+(-1*posi*4000));
+                    wheel.set('top',100+(-1*posi*3000));
                     canvasAnimation.renderAll();
                     await sleep(100);
                 }
             }
         })
+        }
     })
 });
