@@ -22,7 +22,7 @@ if (is_ajax()) {
       case "kyvadlo": kyvadlo($_POST['uhol'],$_POST['position'],$_POST['r']); break;
       case "gulicka": gulicka($_POST['rychlost'],$_POST['zrychlenie'],$_POST['r']); break;
       case "tlmic": tlmic($_POST['x1'],$_POST['x1d'],$_POST['x2'],$_POST['x2d'],$_POST['r']); break;
-      case "lietadlo": lietadlo($_POST['alpha'],$_POST['q'],$_POST['theta'],$_POST['r']); break;
+      case "lietadlo": lietadlo($_POST['naklon1'], $_POST['naklon2']); break;
       case "calcul": calcul($_POST['txt']); break;
       case "pdfLog": pdf_download($_POST['name']); break;
       case "statistika": statistika($_POST['lang']); break;
@@ -122,22 +122,27 @@ function is_ajax() {
     echo json_encode($outputt);
   }
 
-  function lietadlo($alpha,$q, $theta, $r){
-    $command = 'octave -q ./scripts/lietadlo.txt '.$alpha.' '.$q.' '.$theta.' '.$r.' 2>&1|  tr -s " " ';
+  function lietadlo($naklon1, $naklon2){
+    if(!is_numeric($naklon1) || $naklon1 < -round(pi()/4, 2) && $naklon1 > round(pi()/4, 2)) $naklon1 = 0.5;
+    if(!is_numeric($naklon2) || $naklon2 < -round(pi()/4, 2) && $naklon2 > round(pi()/4, 2)) $naklon2 = 0.5;
+
+    $command = 'octave -q ./scripts/lietadlo.txt '.$naklon1.' '.$naklon2.' 2>&1|  tr -s " " ';
     exec($command , $output , $return_var);
-    $outputt = array();
+
+    $data = array();
     $count = 0;
     $tmp = -1;
     for ($i = 0; $i <= count($output)-1; $i++) {
       if($output[$i] == "") continue;
       if($output[$i] == "ans =" ) {
         $count = 0;
-        $tmp += 1;
+        $tmp++;
         continue;
       }
-       $outputt[$count][$tmp] = $output[$i];
+      $data[$count][$tmp] = $output[$i];
       $count += 1;
     }
+
     $result = "OK";
     if(substr( $output[0], 0, 6 ) === "error:"){
       $result = "ERROR: ".$return_var." ";
@@ -145,8 +150,9 @@ function is_ajax() {
         $result = $result.$out;
       }
     }
-    logData("lietadlo", array($alpha, $q, $tetha, $r,""), $result);
-    echo json_encode($outputt);
+    
+    //logData("lietadlo", array($naklon1, $naklon2), $result);
+    echo json_encode($data);
   }
 
   function calcul($eval){
