@@ -97,11 +97,11 @@ else require_once "./lang/lang_en.php";
 <body>
 <header>
     <div class="left">
-<a><button class="btn">Ondro sem treba dat home button</button> </a>
+    <a href="http://147.175.121.210:8233/final_zadanie/?lang=<?php echo $_GET['lang']?>"><button class="btn"><?php echo DOMOV?></button></a>
     </div>
     <div class="right">
-    <a href="https://147.175.121.210:4497/skuska_spolu/moricz/?lang=SK"><button class="btn">SK</button></a>
-    <a href="https://147.175.121.210:4497/skuska_spolu/moricz/?lang=EN"><button class="btn">EN</button></a>
+    <a href="http://147.175.121.210:8233/final_zadanie/moricz/?lang=SK"><button class="btn">SK</button></a>
+    <a href="http://147.175.121.210:8233/final_zadanie/moricz/?lang=EN"><button class="btn">EN</button></a>
     </div>
 </header>
 

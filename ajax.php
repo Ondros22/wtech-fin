@@ -25,6 +25,7 @@ if (is_ajax()) {
       case "lietadlo": lietadlo($_POST['naklon1'], $_POST['naklon2']); break;
       case "calcul": calcul($_POST['txt']); break;
       case "pdfLog": pdf_download($_POST['name']); break;
+      case "docexp": pdf_doc($_POST['name'],$_POST['txt'] ); break;
       case "statistika": statistika($_POST['lang']); break;
       case "mail": sendMail($_POST['to'],$_POST['data']); break;
       case 'select': array_to_csv_download($_POST['name']); break;
@@ -310,4 +311,40 @@ function sendMail($to, $data){
     echo "Email sent successfully";
   }
 }
+
+function pdf_doc($name, $txt) {
+  header('Content-Type: application/pdf');
+  header('Content-Disposition: attachment; filename="'.$name.'";');
+  header('Expires: 0');
+  header('FileName: '.$name.'.pdf');
+  header('Cache-Control: must-revalidate');
+  header('Pragma: public');
+
+  $txt = '<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+     <style>
+     body {
+      font-family: freesans;
+    }
+    table, td, th{
+      border:1px solid black;
+      cellpadding:0;
+      cellspacing:0;
+      border-collapse:collapse;
+    }
+     </style>
+  </head>
+  <body>'.$txt.'</body></html>';
+  $html2pdf = new Html2Pdf('P', 'A3', 'cs', true, 'UTF-8', array(5, 5, 5, 8), true);
+  //$html2pdf->addFont('myfont', '', '/home/ondro/workspace/wtech2/final_zadanie/vendor/tecnickcom/tcpdf/fonts/myfont.php' );
+  //$html2pdf->setDefaultFont('freesans'); 
+  $html2pdf->writeHTML($txt);
+  $tetst =$html2pdf->output(substr($name, 0, -3).'pdf', 'S');
+  
+  echo $tetst;
+  } 
 ?>

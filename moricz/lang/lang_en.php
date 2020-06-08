@@ -6,4 +6,5 @@ define('SUSPENSION','Suspension');
 define('UPPER','Upper body');
 define('LOWER','Lower body');
 define('ERROR','Obstacle size must be in range of (-0.5 , 0.5)');
+define('DOMOV', "Home")
 ?>

@@ -6,4 +6,5 @@ define('SUSPENSION','Tlmic');
 define('UPPER','Horne teleso');
 define('LOWER','Dolne teleso');
 define('ERROR','Velkost prekážky musí byť v intervale (-0.5 , 0.5)');
+define('DOMOV', "Domov")
 ?>

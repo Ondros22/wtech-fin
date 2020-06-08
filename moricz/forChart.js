@@ -160,8 +160,8 @@ $(document).ready(function (keyframes, options) {
             type: "POST",
             dataType: "json",
             data: data,
-            url:"https://147.175.121.210:4497/skuska_spolu/moricz/ajax.php?",
-            //url:"https://147.175.121.210:8233/final_zadanie/ajax.php?",
+            //url:"https://147.175.121.210:4497/skuska_spolu/moricz/ajax.php?",
+            url:"http://147.175.121.210:8233/final_zadanie/ajax.php?",
             complete: async function(dattas){
                 console.log(dattas);
                 var jj=0;
