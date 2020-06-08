@@ -25,8 +25,11 @@
         </svg>
         
         
+        <br><br>
+            <label style="float: left;"><?php echo Graf1?></label>
         
-
+            <label style="float: right;"><?php echo Graf2?></label>
+            <br><br>
         <div id="grafy">
             <div id="chart1"></div>
             <div id="chart2"></div>
@@ -53,9 +56,6 @@
             <input type="submit" value="Start" id="btn" name="btn" />
         </form>
 
-        <br><br>
-            <label style="float: left;">Aktuálna pozícia guličky N*x(:,1) [Červený graf]</label>
         
-            <label style="float: right;">Aktuálny náklon tyče x(:,3) [Zelený graf]</label>
     </body>
 </html>

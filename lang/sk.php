@@ -31,7 +31,8 @@
     define('BALL_TITLE', 'Strba - Gulička');
     define('ZADAJeR','Zadajte r(nová poloha Guličky [-25,25])');
     define('SLOW', 'Spomalenie animácie');
-    
+    define('Graf1','Aktuálna pozícia guličky N*x(:,1) [Červený graf]');
+    define('Graf2','Aktuálny náklon tyče x(:,3) [Zelený graf]');
 
     define('GRAF', 'Graf');
     define('UHOL', 'Uhol');

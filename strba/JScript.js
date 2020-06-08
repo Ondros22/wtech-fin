@@ -21,9 +21,7 @@ var counter = 0;
             exportEnabled: true,
             theme: "dark2", // "light1", "light2", "dark1", "dark2"
             zoomEnabled: true,
-            title:{
-                text: "Aktuálna pozícia guličky N*x(:,1)"
-            },
+            
             axisX:{
                 labelAngle: -50,
             },
@@ -49,9 +47,7 @@ var counter = 0;
             exportEnabled: true,
             theme: "dark2", // "light1", "light2", "dark1", "dark2"
             zoomEnabled: true,
-            title:{
-                text: "Aktuálny náklon tyče x(:,3)"
-            },
+            
             axisX:{
                 labelAngle: -50,
             },

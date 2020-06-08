@@ -31,6 +31,8 @@
 
     define('ZADAJeR','R(new position of ball , range: [-25,25])');
     define('SLOW', 'Slow of animation');
+    define('Graf1','Current ball position  N*x(:,1) [Red graph]');
+    define('Graf2','Current inclination of bar x(:,3) [Green graph]');
 
     define('GRAF', 'Chart');
     define('UHOL', 'Angle');
