@@ -6,7 +6,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title><?php echo PENDULUM_TITLE ?></title>
+        <title><?php echo BALL_TITLE ?></title>
         <link rel="stylesheet" href="./style.css" />
         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -23,6 +23,10 @@
             <line id="BEAM" x1="-40" y1="70" x2="40" y2="70" stroke="grey" stroke-width="4" style="transform-origin: 0px 70px;"></line>
             <circle id="gulicka" cx="0" cy="64" r="3" stroke="black" stroke-width="1" fill="red" style="transform-origin: 0px 64px;" />
         </svg>
+        
+        
+        
+
         <div id="grafy">
             <div id="chart1"></div>
             <div id="chart2"></div>

@@ -25,8 +25,10 @@
     define('LOWER','Dolne teleso');
     define('ERROR','Velkost prekážky musí byť v intervale (-0.5 , 0.5)');
 
+    define('BALL_TITLE', 'Strba - Gulička');
     define('ZADAJeR','Zadajte r(nová poloha Guličky [-25,25])');
     define('SLOW', 'Spomalenie animácie');
+    
 
     define('GRAF', 'Graf');
     define('UHOL', 'Uhol');
