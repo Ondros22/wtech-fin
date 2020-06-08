@@ -29,7 +29,7 @@
         </div>
 
         <form action="">
-            <label for="r">Zadajte r(nová poloha Guličky [-25,25])</label>
+            <label for="r"><?php echo ZADAJeR?></label>
             <input type="number" min="-25" max="25" name="r" id="r" value="0" />
 
             
