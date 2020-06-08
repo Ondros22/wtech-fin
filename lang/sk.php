@@ -30,4 +30,11 @@
     define('POZICIA', 'Pozícia');
     define('RYCHLOST', 'Rýchlosť');
     define('ANIMACIA', 'Animácia');
+
+    define('VSTUP', 'Vstup');
+    define('VYSTUP', 'Výstup');
+    define('VYPOCITAJ', 'Vypočítaj');
+
+    define('ULOHY', 'Úlohy');
+    define('KNIZNICE', 'Knižnice');
 ?>

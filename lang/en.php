@@ -34,4 +34,12 @@
     define('POZICIA', 'Position');
     define('RYCHLOST', 'Speed');
     define('ANIMACIA', 'Animation');
+
+    define('VSTUP', 'Input');
+    define('VYSTUP', 'Output');
+    define('DOMOV', 'HOME');
+    define('VYPOCITAJ', 'Calculate');
+
+    define('ULOHY', 'Assigments');
+    define('KNIZNICE', 'Libraries');
 ?>
