@@ -38,12 +38,12 @@
             
             <input type="hidden" min="0" max="1" name="zrychlenie" id="zrychlenie" value="0" />
 
-            <label for="angle">Spomalenie animácie</label>
+            <label for="angle"><?php echo SLOW ?></label>
             <input type="range" min="0" max="1000" value="0" class="slider" id="myRange" />
 
-            <label for="animacia">Animacia</label>
+            <label for="animacia"><?php echo ANIMACIA ?></label>
             <input type="checkbox" name="animacia" id="animacia" checked="" />
-            <label for="graf">Graf</label>
+            <label for="graf"><?php echo GRAF ?></label>
             <input type="checkbox" name="graf" id="graf" checked="" />
 
             <input type="submit" value="Start" id="btn" name="btn" />

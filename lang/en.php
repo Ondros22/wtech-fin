@@ -30,6 +30,7 @@
     define('ERROR','Obstacle size must be in range of (-0.5 , 0.5)');
 
     define('ZADAJeR','R(new position of ball , range: [-25,25])');
+    define('SLOW', 'Slow of animation');
 
     define('GRAF', 'Chart');
     define('UHOL', 'Angle');
