@@ -58,19 +58,21 @@ var counter = 0;
             data: [{
                 type: "line", //change type to bar, line, area, pie, etc
                 //indexLabel: "{y}", //Shows y value on all Data Points
-                indexLabelFontColor: "#5A5757",
+                indexLabelFontColor: "#ADFF2F",
                 indexLabelPlacement: "outside",
-                lineColor: "#5A5757",   
+                lineColor: "#ADFF2F",   
                 dataPoints: [{x:0,y:0}]
             },{
                 type: "line", //change type to bar, line, area, pie, etc
                 //indexLabel: "{y}", //Shows y value on all Data Points
-                indexLabelFontColor: "#DC143C",
+                indexLabelFontColor: "#ADFF2F",
                 indexLabelPlacement: "outside",
-                lineColor: "#DC143C",   
+                lineColor: "#ADFF2F",   
                 dataPoints: [{x:0,y:0}]
             }]
         });
+        
+        
 
         chart.render();
         chart2.render(); 

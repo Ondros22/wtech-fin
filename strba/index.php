@@ -53,8 +53,9 @@
             <input type="submit" value="Start" id="btn" name="btn" />
         </form>
 
-        <span style="position: absolute; left: 0px; top: -20000px; padding: 0px; margin: 0px; border: none; white-space: pre; line-height: normal; font-family: Helvetica, sans-serif; font-size: 10px; font-weight: normal; display: none;">
-            
-        </span>
+        <br><br>
+            <label style="float: left;">Aktuálna pozícia guličky N*x(:,1) [Červený graf]</label>
+        
+            <label style="float: right;">Aktuálny náklon tyče x(:,3) [Zelený graf]</label>
     </body>
 </html>
