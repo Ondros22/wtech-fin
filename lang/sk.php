@@ -11,7 +11,10 @@
     define('DOKUMENTACIA', 'Dokumentácia');
     define('LOGY', 'Logy');
 
-    define('AIRPLANE_TITLE', 'Pastorek - lietadlo');
+    define('SUSPENSION_TITLE', 'Moricz - Tlmič');
+    define('PENDULUM_TITLE', 'Straka - Kyvadlo');
+
+    define('AIRPLANE_TITLE', 'Pastorek - Lietadlo');
     define('TILT', 'Náklon');
     define('SPEED', 'Rýchlosť');
     define('ANIMATION', 'Animácia');
