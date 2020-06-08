@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="style.css">
         <script>
             var key ="<?php echo $apiKey?>";
+            var speed = <?php echo $$kyvadlo_speed?>;
         </script>
         <script src="run.js"></script>
     </head>
