@@ -282,7 +282,7 @@
                 <td>Mail</td><td>Straka</td>
             </tr>
             <tr>
-                <td>Dokumentácia</td><td>Moric</td>
+                <td>Dokumentácia</td><td>Móricz</td>
             </tr>
             <tr>
                 <td>Mail</td><td>Móricz</td>

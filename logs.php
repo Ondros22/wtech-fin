@@ -2,6 +2,7 @@
     if($_GET['lang'] == 'SK') require_once "./lang/lang_sk.php";
     else require_once "./lang/lang_en.php";
     $arr = scandir("./logs");
+    require_once "./conf.php";
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +23,8 @@
         function csvDownload(a){
             var data = {
                 "action": "select",
-                "name": a.getAttribute("value")
+                "name": a.getAttribute("value"),
+                "key": "<?php echo $apiKey?>"
         };
         $.ajax({
             url: 'http://147.175.121.210:8233/final_zadanie/ajax.php?',
@@ -52,8 +54,9 @@
         function pdfDownload(a){
             var data = {
                 "action": "pdfLog",
-                "name": a.getAttribute("value")
-        };
+                "name": a.getAttribute("value"),
+                "key": "<?php echo $apiKey?>"
+            };
         $.ajax({
             url: 'http://147.175.121.210:8233/final_zadanie/ajax.php?',
             type: 'POST',

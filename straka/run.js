@@ -80,8 +80,9 @@ $(document).ready(function(){
                         }
                         await sleep(speed);
                     }
-                    $('#angle').val(parseFloat(datta.responseJSON[i-1][1]));
-                    $('#position').val(parseFloat(datta.responseJSON[i-1][0]));
+                    $('#angle').val(parseFloat(datta.responseJSON[i-3][1]));
+                    $('#position').val(parseFloat(datta.responseJSON[i-3][0]));
+                    console.log(datta.responseJSON[i-3]);
                 }
         });
     });
