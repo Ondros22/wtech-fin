@@ -32,11 +32,11 @@
             <label for="r">Zadajte r(nová poloha Guličky [-25,25])</label>
             <input type="number" min="-25" max="25" name="r" id="r" value="0" />
 
-            <label for="rychlost">Rychlost</label>
-            <input type="number" min="0" max="1" name="rychlost" id="rychlost" value="0" />
+            
+            <input type="hidden" min="0" max="1" name="rychlost" id="rychlost" value="0" />
 
-            <label for="zrychlenie">Zrychlenie</label>
-            <input type="number" min="0" max="1" name="zrychlenie" id="zrychlenie" value="0" />
+            
+            <input type="hidden" min="0" max="1" name="zrychlenie" id="zrychlenie" value="0" />
 
             <label for="angle">Spomalenie animácie</label>
             <input type="range" min="0" max="1000" value="0" class="slider" id="myRange" />
@@ -50,7 +50,7 @@
         </form>
 
         <span style="position: absolute; left: 0px; top: -20000px; padding: 0px; margin: 0px; border: none; white-space: pre; line-height: normal; font-family: Helvetica, sans-serif; font-size: 10px; font-weight: normal; display: none;">
-            Mpgyi
+            
         </span>
     </body>
 </html>
