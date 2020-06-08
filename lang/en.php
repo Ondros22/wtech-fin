@@ -12,7 +12,7 @@
     define('LOGY', 'Logs');
 
     define('AIRPLANE_TITLE', 'Pastorek - Airplane');
-    define('SUSPENSION_TITLE', 'Morics - Suspension');
+    define('SUSPENSION_TITLE', 'Moricz - Suspension');
     define('PENDULUM_TITLE', 'Straka - Pendulum');
     define('BALL_TITLE', 'Strba - Ball');
 
