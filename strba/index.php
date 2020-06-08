@@ -78,11 +78,11 @@
         <input type="number" min="-25" max="25" name="r" id="r" value = 0>
 
         <label for="rychlost">Rychlost</label>
-        <input type="number" min="-25" max="25" name="rychlost" id="rychlost" value = 0>
+        <input type="number" min="0" max="1" name="rychlost" id="rychlost" value = 0>
 
         <label for="zrychlenie">Zrychlenie</label>
-        <input type="number" min="-25" max="25" name="zrychlenie" id="zrychlenie" value = 0>
-
+        <input type="number" min="0" max="1" name="zrychlenie" id="zrychlenie" value = 0>
+        
 
         <label for="angle">Spomalenie animácie</label>
         <input type="range" min="0" max="1000" value="0" class="slider" id="myRange">

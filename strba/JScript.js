@@ -111,111 +111,60 @@ var counter = 0;
                     var test = counter;
 
                         
-                         const results = JSON.parse(datta);
-                
-                        var mid = 50;
-                        var test = counter;
 
-                        
+                        for (i = 0; i < datta.responseJSON.length; i++) {
+                            if(test != counter) return;
+                           // $('#BEAM').css('transform',' rotateZ('+datta.responseJSON[i][1]+'deg)');
+                           // $('#gulicka').css('transform','translateX('+parseFloat(datta.responseJSON[i][0])+'%)'+'translateY('+parseFloat(datta.responseJSON[i][0])+'%)');
+                            if(i == 0){
+                                chart.options.data[0].dataPoints = [{ y:parseFloat(datta.responseJSON[i][0]), x:parseFloat(datta.responseJSON[i][2]), color:"blue" }];
+                                chart.options.data[1].dataPoints = [{ y:parseFloat(datta.responseJSON[i][0]), x:parseFloat(datta.responseJSON[i][2]), color:"red" }];
 
-                i=0;
-                $SumX = 0;
-                $SumY = 0;
-                Object.keys(results).forEach(element => {
-                    $MojFloat = results[element];
-                    $MojFloat2 = $MojFloat.substr(2,9);
-                    $MojFloat3 = parseFloat($MojFloat2);
-                    $YpsilonSur = 0;
-                    $Xsur =  $MojFloat3;
-                    if(i<500){
-                    $SumX += $MojFloat3;
-                    
-                    }
-                    if(i<1000 && i>501){
-                    $SumY += $MojFloat3;
-                    
-                    }
-                    
-                        $mojeR = 0; //dorobit
-
-                        //-------Ypsilon Suradnica Gulicka--------------
-                        if($mojeR >= 0){
-                            if($mojeR <= 20){
-                                $YpsilonSur = $MojFloat3 / 3;
-                            }
-                            else
-                            {
-                                $YpsilonSur = $MojFloat3 /2;
-                            }
-                        }
-                        else{
-                            if($mojeR >= -20){
-                                $YpsilonSur = -$MojFloat3 / 3;
-                            }
-                            else
-                            {
-                                $YpsilonSur = -$MojFloat3 /2;
-                            }
-                        //$YpsilonSur = -$MojFloat3 / 3;
-                        }
-                        //---------X-----------------
-                        if($mojeR <= $MojFloat3){
-                        //$Xsur  = $MojFloat3;
-                        }
-                        else{
-                       // $Xsur  = -$MojFloat3;
-                        }
-                    
-                    
-                   
-                    i++;
-                    //sleep(5);
-                    //naplnenie prveho Chartu
-                    if(i == 0){
-                                chart.options.data[0].dataPoints = [{ y:$MojFloat3, x:0.05*(i%500) }];
-                                chart.options.data[1].dataPoints = [{ y:$MojFloat3, x:0.05*(i%500), color:"red" }];
+                                chart2.options.data[0].dataPoints = [{ y:parseFloat(datta.responseJSON[i][1]), x:parseFloat(datta.responseJSON[i][2]), color:"blue" }];
+                                chart2.options.data[1].dataPoints = [{ y:parseFloat(datta.responseJSON[i][1]), x:parseFloat(datta.responseJSON[i][2]), color:"red" }];
+                                //$('#BEAM').css('transform','rotateZ('+datta.responseJSON[i][0]+'deg)');
                                 chart.render();
+                                chart2.render();
                             }else if(i<500){
-                                $('#gulicka').css('transform','translateX('+$Xsur+'%)'+'translateY('+$YpsilonSur+'%)');
-
-                                //$('#gulicka').css('transform','translateX('+$MojFloat3+'%)'+'translateY('+$MojFloat3+'%)');
+                                chart.options.data[0].dataPoints.push({ y:parseFloat(datta.responseJSON[i][0]), x:parseFloat(datta.responseJSON[i][2]), color:"blue" });
+                                chart.options.data[1].dataPoints.push({ y:parseFloat(datta.responseJSON[i][0]), x:parseFloat(datta.responseJSON[i][2]), color:"red" });
+                                $('#BEAM').css('transform','rotateZ('+datta.responseJSON[i][0]+'deg)');
                                 
-                                chart.options.data[0].dataPoints.push({ y:$MojFloat3, x:0.05*(i%500) });
-                                chart.options.data[1].dataPoints.push({ y:$MojFloat3, x:0.05*(i%500), color:"red" });
-                                chart.render();
-                            
-                        }
-                     if(i==501){
-                                //chart2.options.data[0].dataPoints =[({ y:$MojFloat3, x:0.05*(i%500) })];
-                               // chart2.options.data[1].dataPoints=[({ y:$MojFloat3, x:0.05*(i%500), color:"red" })];
-                                chart2.render();
-                                //var pi = Math.PI;
-                                //$degrees = $MojFloat3 * (180/pi);
-                                //var degrees = $MojFloat3 * (57);
-                                //console.log(degrees);
-                                StupneZ = radians_to_degrees($MojFloat3);
+                                chart2.options.data[0].dataPoints.push({ y:parseFloat(datta.responseJSON[i][1]), x:parseFloat(datta.responseJSON[i][2]), color:"blue" });
+                                chart2.options.data[1].dataPoints.push({ y:parseFloat(datta.responseJSON[i][1]), x:parseFloat(datta.responseJSON[i][2]), color:"red" });
 
-                                $('#BEAM').css('transform','rotateZ('+$MojFloat3+'deg)');
-                        }else if(i<1000 && i>501){
-                                chart2.options.data[0].dataPoints.push({ y:$MojFloat3, x:0.05*(i%500) });
-                                chart2.options.data[1].dataPoints.push({ y:$MojFloat3, x:0.05*(i%500), color:"red" });
-                                //StupneZ = radians_to_degrees($MojFloat3);
-                                //$('#BEAM').css('transform','rotateZ('+StupneZ+'deg)');
-                                //$('#BEAM').css('transform','rotateZ('+$MojFloat3+'deg)'); 
+                                if(data.r<11 && data.r>=0){
+                                $Y = parseFloat(datta.responseJSON[i][0]) / 3;
+                                }
+                                else if(data.r>=11)
+                                {
+                                    $Y = parseFloat(datta.responseJSON[i][0]) / 2;  
+                                }
+                                else if(data.r<0 && data.r>= -11)
+                                {
+                                    $Y = parseFloat(datta.responseJSON[i][0]) / 3;
+                                    $Y = -$Y;
+                                }
+                                else if(data.r<= -12)
+                                {
+                                    $Y = parseFloat(datta.responseJSON[i][0]) / 2;
+                                    $Y = -$Y;
+                                }
+                                $('#gulicka').css('transform','translateX('+parseFloat(datta.responseJSON[i][0])+'%)'+'translateY('+$Y+'%)');
+                                chart.render();
                                 chart2.render();
                             }
-                    
-
-                     sleep(speed);
-
+                            await sleep(speed);
+                        }
+                        
                         
                     //console.log($_POST['parameter']);
                     //console.log($MojFloat3);
                     
                     //$('#pecko').append(`<li>${element} : ${results[element]}</li>`);
-                } 
+                
 
-                );
+                
               }
             })
               
