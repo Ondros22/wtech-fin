@@ -102,7 +102,7 @@ var counter = 0;
                     type: "POST",
                     dataType: "json",
                     data: data,
-                    url:"http://147.175.121.210:8233/final_zadanie/ajax.php?",
+                    url:"/final_zadanie/ajax.php?",
                     complete: async function(datta) {
                         
                         

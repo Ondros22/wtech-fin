@@ -24,3 +24,10 @@ input, label{
 pre{
     display: block;
 }
+
+label{
+    margin-right:30px;
+}
+input{
+    margin-right:50px;
+}

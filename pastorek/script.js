@@ -144,12 +144,13 @@ var Airplane = (function () {
             type: "POST",
             dataType: "json",
             data: data,
-            url: "http://147.175.121.210:8223/finale/ajax.php?",
+            url: "/final_zadanie/ajax.php?",
             complete: Airplane.setData
         });
     }
 
     function sleep(ms) {
+        if(tilt1 == "") return;
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
@@ -181,6 +182,8 @@ var Airplane = (function () {
         setData: async function (data) {
             console.log(data);
             for (i = 0; i < data.responseJSON.length; i++) {
+                if(tilt1 == "") return;
+
                 var time, x, y;
                 time = parseFloat(data.responseJSON[i][0]);
                 if(isNaN(time)) break;

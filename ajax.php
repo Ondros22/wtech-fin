@@ -41,7 +41,6 @@ function is_ajax() {
   return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 }
 
-
   function kyvadlo($uhol,$position,$r){
     $command = 'octave -q ./scripts/kyvadlo.txt '.$position.' '.$uhol.' '.$r.' 2>&1|  tr -s " " ';
     exec($command , $output , $return_var);
@@ -152,7 +151,7 @@ function is_ajax() {
       }
     }
     
-    //logData("lietadlo", array($naklon1, $naklon2), $result);
+    logData("lietadlo", array($naklon1, $naklon2), $result);
     echo json_encode($data);
   }
 
