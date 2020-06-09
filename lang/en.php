@@ -1,15 +1,16 @@
 <?php  
-    define('MENO','Name');
-    define('AKCIA','Action');
-    define('DOMOV', 'Home');
-    define('KYVADLO', 'Pendulum');
-    define('LIETADLO', 'Airplane');
-    define('GULICKA', 'Ball');
-    define('TLMIC', 'Suspension');
-    define('KALKULACKA', 'Calculator');
-    define('STATISTIKA', 'Statistcs');
-    define('DOKUMENTACIA', 'Documentation');
-    define('LOGY', 'Logs');
+    define('NAME','Name');
+    define('ACTION','Action');
+    define('HOME', 'Home');
+    define('CALCULATOR', 'Calculator');
+    define('STATISTICS', 'Statistcs');
+    define('DOCUMENTATION', 'Documentation');
+    define('LOGS', 'Logs');
+
+    define('PENDULUM', 'Pendulum');
+    define('AIRPLANE', 'Airplane');
+    define('BALL', 'Ball');
+    define('SUSPENSION', 'Suspension');
 
     define('AIRPLANE_TITLE', 'Pastorek - Airplane');
     define('SUSPENSION_TITLE', 'Morics - Suspension');
@@ -24,7 +25,6 @@
     define('RESET', 'Reset');
 
     define('OBSTACLE','Obstacle size (-0.5,0.5)');
-    define('SUSPENSION','Suspension');
     define('UPPER','Upper body');
     define('LOWER','Lower body');
     define('ERROR','Obstacle size must be in range of (-0.5 , 0.5)');
@@ -39,6 +39,31 @@
     define('VYSTUP', 'Output');
     define('VYPOCITAJ', 'Calculate');
 
-    define('ULOHY', 'Assigments');
-    define('KNIZNICE', 'Libraries');
+    define('ASSIGMENT', 'Assigment');
+    define('ASSIGMENTS', 'Assigments');
+    define('LIBRARY', 'Library');
+    define('LIBRARIES', 'Libraries');
+    define('USAGE', 'Usage');
+    define('WORKER', 'Worker');
+
+    define('TASK1', 'Pendulum');
+    define('TASK2', 'Airplane');
+    define('TASK3', 'Ball');
+    define('TASK4', 'Suspension');
+    define('TASK5', 'Multi language');
+    define('TASK6', 'CAS');
+    define('TASK7', 'ApiKey');
+    define('TASK8', 'CAS form');
+    define('TASK9', 'Logs');
+    define('TASK10', 'Downloading');
+    define('TASK11', 'Pdf');
+    define('TASK12', 'Mail');
+    define('TASK13', 'Documentation');
+    define('TASK14', 'Front end');
+
+    define('LIBRARY1', 'Creating pdf documents');
+    define('LIBRARY2', 'Sending emails via Gmail SMTP');
+    define('LIBRARY3', 'Drawing charts');
+    define('LIBRARY4', 'Create and display animated 3D');
+    define('LIBRARY5', 'Drawing charts');
 ?>

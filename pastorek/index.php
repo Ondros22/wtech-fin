@@ -6,8 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title><?php echo AIRPLANE_TITLE ?></title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
-        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="../style.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -21,12 +20,12 @@
     <body>
         <?php require_once "../header.php"; ?>
         <div class="justify-content-center my-3 pb-5">
-            <div class="container col-12 mb-3 text-center">
-                <div class="form-group">
+            <div class="container col-8 mb-3 text-center">
+                <div class="form-group mb-2">
                     <div id="animation" class="scene" style="width: 800px; height: 150px; margin: auto;"></div>
                 </div>
-                <div class="form-group">
-                    <div id="graph" style="width: 800px; height: 400px; margin: auto;"></div>
+                <div class="form-group mb-2">
+                    <div id="graph" style="width: 100%; height: 400px; margin: auto;"></div>
                 </div>
                 <div class="form-group mb-2">
                     <label><?php echo TILT ?>:</label>
@@ -49,11 +48,11 @@
                 </div>
             </div>
         </div>
-
+        <?php require_once "../footer.php"; ?>
         <script src="./script.js"></script>
         <script>
             $(document).ready(function () {
-                //$(".nav-item .nav-link").eq(0).addClass("active");
+                $(".nav-link").eq(7).addClass("active");
                 $("#tilt").attr("min", -Math.round((Math.PI * 100) / 4) / 100);
                 $("#tilt").attr("max", Math.round((Math.PI * 100) / 4) / 100);
                 $("#tilt").attr("step", 0.01);

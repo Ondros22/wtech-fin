@@ -1,48 +1,45 @@
-<?php
-    require_once "../conf.php";
-    if($kyvadlo_speed < 0) $kyvadlo_speed = 0;
-    else if($kyvadlo_speed > 1000)$kyvadlo_speed = 1000;
-?>
+<?php require_once "../conf.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
-        <link rel="stylesheet" href="style.css" />
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../style.css" />
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="./run.js"></script>
         <script>
             var key = "<?php echo $apiKey?>";
         </script>
-        <script src="./run.js"></script>
     </head>
     <body>
         <?php require_once "../header.php"; ?>
-        <div style="margin: 0 auto; width: 300px; height: 20px;">
-            <label for="api">Api</label>
-            <label for="ulohy"><?php echo ULOHY?></label>
-            <label for="kniznice"><?php echo KNIZNICE?></label>
-        </div>
-        <br />
-        <div style="margin: 0 auto; width: 300px;">
-            <input type="radio" name="doku" id="api" value="api" checked />
-            <input type="radio" name="doku" id="ulohyinp" value="ulohy" />
-            <input type="radio" name="doku" id="knizniceinp" value="kniznice" />
-        </div>
-        <br />
-        <?php if($_GET['lang'] != 'SK') {?>
-        <div id="doku">
-            <pre>
-           <strong>@POST /ajax.php (@Body body)</strong>
+        <div class="justify-content-center my-3 pb-5">
+            <div class="container col-6 mb-3">
+                <div class="form-group text-center">
+                    <label for="api">Api</label>
+                    <label for="ulohy"><?php echo ULOHY?></label>
+                    <label for="kniznice"><?php echo KNIZNICE?></label>
+                </div>
+                <div class="form-group text-center">
+                    <input type="radio" name="doku" id="api" value="api" checked />
+                    <input type="radio" name="doku" id="ulohyinp" value="ulohy" />
+                    <input type="radio" name="doku" id="knizniceinp" value="kniznice" />
+                </div>
+                <div class="form-group">
+                    <?php if($_GET['lang'] != 'SK') {?>
+                    <div id="doku">
+                        <pre>
+                            <strong>@POST /ajax.php (@Body body)</strong>
 
                 case: body = {                                 api responds 2dim array in format [i][0] first value
-                        <strong>action:"kyvadlo"</strong>,                                                        [i][1] second value
-                        uhol: [number],                                                          [i][2] time
-                        position: [number],                    
-                        r: [number],
-                        key: [apiKey]
-                    }  
+                    <strong>action:"kyvadlo"</strong>,                                                        [i][1] second value
+                    uhol: [number],                                                          [i][2] time
+                    position: [number],                    
+                    r: [number],
+                    key: [apiKey]
+                }  
                     
                 case: body = {                                 api responds 2dim array in format [i][0] first value
                     <strong>action:"gulicka"</strong>,                                                            [i][1] second value
@@ -102,19 +99,19 @@
                     key: [apiKey]
                 }
     </pre>
-        </div>
-        <?php } else {?>
-        <div id="doku">
-            <pre>
-           <strong>@POST /ajax.php (@Body body)</strong>
+                    </div>
+                    <?php } else {?>
+                    <div id="doku">
+                        <pre>
+                            <strong>@POST /ajax.php (@Body body)</strong>
 
                 case: body = {                                 api odpovedá formou 2 rozmerného poľa vo formáte [i][0] prvá hodnota
-                        <strong>action:"kyvadlo"</strong>,                                                                       [i][1] druhá hodnota
-                        uhol: [number],                                                                         [i][2] čas
-                        position: [number],                    
-                        r: [number],
-                        key: [apiKey]
-                    }  
+                    <strong>action:"kyvadlo"</strong>,                                                                       [i][1] druhá hodnota
+                    uhol: [number],                                                                         [i][2] čas
+                    position: [number],                    
+                    r: [number],
+                    key: [apiKey]
+                }  
                     
                 case: body = {                                 api odpovedá formou 2 rozmerného poľa vo formáte [i][0] prvá hodnota
                     <strong>action:"gulicka"</strong>,                                                                           [i][1] druhá hodnota
@@ -174,172 +171,140 @@
                     key: [apiKey]
                 }
     </pre>
+                    </div>
+                    <?php }?>
+                    <div id="ulohy" class="col-5" style="margin: auto;">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col"><?php echo ASSIGMENT; ?></th>
+                                    <th scope="col"><?php echo WORKER; ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td><?php echo TASK1; ?></td>
+                                    <td>Straka</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td><?php echo TASK2; ?></td>
+                                    <td>Pastorek</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td><?php echo TASK3; ?></td>
+                                    <td>Štrba</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td><?php echo TASK4; ?></td>
+                                    <td>Móricz</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">5</th>
+                                    <td><?php echo TASK5; ?></td>
+                                    <td>Straka</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">6</th>
+                                    <td><?php echo TASK6; ?></td>
+                                    <td>Pastorek, Móricz</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">7</th>
+                                    <td><?php echo TASK7; ?></td>
+                                    <td>Štrba</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">8</th>
+                                    <td><?php echo TASK8; ?></td>
+                                    <td>Móricz</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">9</th>
+                                    <td><?php echo TASK9; ?></td>
+                                    <td>Pastorek</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">10</th>
+                                    <td><?php echo TASK10; ?></td>
+                                    <td>Štrba</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">11</th>
+                                    <td><?php echo TASK11; ?></td>
+                                    <td>Straka</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">12</th>
+                                    <td><?php echo TASK12; ?></td>
+                                    <td>Straka</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">13</th>
+                                    <td><?php echo TASK13; ?></td>
+                                    <td>Móric</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">14</th>
+                                    <td><?php echo TASK14; ?></td>
+                                    <td>Straka, Pastorek, Móricz, Štrba</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="kniznice" class="col-5" style="margin: auto;">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col"><?php echo LIBRARY; ?></th>
+                                    <th scope="col"><?php echo USAGE; ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Html2pdf</td>
+                                    <td><?php echo LIBRARY1; ?></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>phpMailer</td>
+                                    <td><?php echo LIBRARY2; ?></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>CanvasJS</td>
+                                    <td><?php echo LIBRARY3; ?></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td>three</td>
+                                    <td><?php echo LIBRARY4; ?></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">5</th>
+                                    <td>Plotly</td>
+                                    <td><?php echo LIBRARY5; ?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button id="btn" class="btn btn-primary">Export</button>
+                </div>
+            </div>
         </div>
-        <?php }?>
-
-        <?php if($_GET['lang'] != 'SK') {?>
-        <br />
-        <div id="ulohy">
-            <table id="ulohy" style="margin: 0 auto;">
-                <thead>
-                    <th>Assignment</th>
-                    <th>Worker</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Multi language</td>
-                        <td>Straka</td>
-                    </tr>
-                    <tr>
-                        <td>CAS</td>
-                        <td>Pastorek, Móricz</td>
-                    </tr>
-                    <tr>
-                        <td>ApiKey</td>
-                        <td>Štrba</td>
-                    </tr>
-                    <tr>
-                        <td>CAS form</td>
-                        <td>Móricz</td>
-                    </tr>
-                    <tr>
-                        <td>Logs</td>
-                        <td>Pastorek</td>
-                    </tr>
-                    <tr>
-                        <td>Downloading</td>
-                        <td>Štrba</td>
-                    </tr>
-                    <tr>
-                        <td>Pdf</td>
-                        <td>Straka</td>
-                    </tr>
-                    <tr>
-                        <td>Mail</td>
-                        <td>Straka</td>
-                    </tr>
-                    <tr>
-                        <td>Documentation</td>
-                        <td>Móric</td>
-                    </tr>
-                    <tr>
-                        <td>Mail</td>
-                        <td>Móricz</td>
-                    </tr>
-                    <tr>
-                        <td>Front end</td>
-                        <td>Straka, Pastorek, Móricz, Štrba</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <?php } else {?>
-        <br />
-        <div id="ulohy">
-            <table style="margin: 0 auto;">
-                <thead>
-                    <th>Zadanie</th>
-                    <th>Vypracoval</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Viacjazyčnosť</td>
-                        <td>Straka</td>
-                    </tr>
-                    <tr>
-                        <td>CAS</td>
-                        <td>Pastorek, Móricz</td>
-                    </tr>
-                    <tr>
-                        <td>ApiKey</td>
-                        <td>Štrba</td>
-                    </tr>
-                    <tr>
-                        <td>CAS formulár</td>
-                        <td>Móricz</td>
-                    </tr>
-                    <tr>
-                        <td>Logy</td>
-                        <td>Pastorek</td>
-                    </tr>
-                    <tr>
-                        <td>Stahovanie súborov</td>
-                        <td>Štrba</td>
-                    </tr>
-                    <tr>
-                        <td>Pdf</td>
-                        <td>Straka</td>
-                    </tr>
-                    <tr>
-                        <td>Mail</td>
-                        <td>Straka</td>
-                    </tr>
-                    <tr>
-                        <td>Dokumentácia</td>
-                        <td>Móricz</td>
-                    </tr>
-                    <tr>
-                        <td>Mail</td>
-                        <td>Móricz</td>
-                    </tr>
-                    <tr>
-                        <td>Front end</td>
-                        <td>Straka, Pastorek, Móricz, Štrba</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <?php }?>
-
-        <?php if($_GET['lang'] != 'SK') {?>
-        <br />
-        <div id="kniznice">
-            <table style="margin: 0 auto;">
-                <thead>
-                    <th>Library</th>
-                    <th>Usage</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Html2pdf</td>
-                        <td>Creating pdf documents</td>
-                    </tr>
-                    <tr>
-                        <td>phpMailer</td>
-                        <td>Sending emails via Gmail SMTP</td>
-                    </tr>
-                    <tr>
-                        <td>CanvasJS</td>
-                        <td>Drawing charts</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <?php } else {?>
-        <br />
-        <div id="kniznice">
-            <table style="margin: 0 auto;">
-                <thead>
-                    <th>Knižnice</th>
-                    <th>Použitie</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Html2pdf</td>
-                        <td>Vytváranie pdf dokumentov</td>
-                    </tr>
-                    <tr>
-                        <td>phpMailer</td>
-                        <td>Posielanie emailov cez gmail SMTP</td>
-                    </tr>
-                    <tr>
-                        <td>CanvasJS</td>
-                        <td>Vykresľovanie grafov</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <?php }?>
-        <button id="btn" style="margin: 0 auto; display: block; margin-bottom: 20px;">Export</button>
+        <?php require_once "../footer.php"; ?>
+        <script>
+            $(document).ready(function () {
+                $(".nav-link").eq(0).addClass("active");
+            });
+        </script>
     </body>
 </html>
