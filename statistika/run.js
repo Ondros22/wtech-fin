@@ -13,7 +13,7 @@ $(document).ready(function(){
         data: [{
             type: "pie", //change type to bar, line, area, pie, etc
             startAngle: 240,
-        yValueFormatString: "##0.00\"%\"",
+        yValueFormatString: "##0",
         indexLabel: "{label} {y}",
         dataPoints: [],
         }]

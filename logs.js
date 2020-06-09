@@ -2,7 +2,7 @@ function csvDownload(a){
     var data = {
         "action": "select",
         "name": a.getAttribute("value"),
-        "key": "<?php echo $apiKey?>"
+        "key": key
 };
 $.ajax({
     url: '/final_zadanie/ajax.php?',
@@ -33,7 +33,7 @@ function pdfDownload(a){
     var data = {
         "action": "pdfLog",
         "name": a.getAttribute("value"),
-        "key": "<?php echo $apiKey?>"
+        "key": key
     };
 $.ajax({
     url: '/final_zadanie/ajax.php?',

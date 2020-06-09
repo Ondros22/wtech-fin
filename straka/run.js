@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    var speed = 0;
     var counter = 0;
     $(document).on('input', '#myRange', function() {
         $('#string').css('transition', (parseInt($(this).val()+5))+"ms all linear");

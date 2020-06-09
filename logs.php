@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        var key = "<?php echo $apiKey; ?>";
+    </script>
     <script src="./logs.js"></script>
 </head>
 <body>
