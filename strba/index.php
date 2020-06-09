@@ -24,55 +24,32 @@
                     <line id="BEAM" x1="-40" y1="70" x2="40" y2="70" stroke="grey" stroke-width="4" style="transform-origin: 0px 70px;"></line>
                     <circle id="gulicka" cx="0" cy="64" r="3" stroke="black" stroke-width="1" fill="red" style="transform-origin: 0px 64px;" />
                 </svg>
-                <div id="grafy" class="row" style="margin-left:0px; margin-right:0px;">
-                    <div id="chart1" class="col-6" style="padding:0px;"></div>
-                    <div id="chart2" class="col-6" style="padding:0px;"></div>
-            <label style="float: left;"><?php echo Graf1?></label>
-        
-            <label style="float: right;"><?php echo Graf2?></label>
-            <br><br>
+                <div id="grafy" class="row" style="margin-left: 0px; margin-right: 0px;">
+                    <div id="chart1" class="col-6" style="padding: 0px;"></div>
+                    <div id="chart2" class="col-6" style="padding: 0px;"></div>
                 </div>
 
                 <form action="" class="mt-3">
-            <label for="r"><?php echo ZADAJeR?></label>
+                    <label for="r"><?php echo ZADAJeR?></label>
                     <input type="number" min="-25" max="25" name="r" id="r" value="0" />
 
-            
-            <input type="hidden" min="0" max="1" name="rychlost" id="rychlost" value="0" />
+                    <input type="hidden" min="0" max="1" name="rychlost" id="rychlost" value="0" />
 
-            
-            <input type="hidden" min="0" max="1" name="zrychlenie" id="zrychlenie" value="0" />
+                    <input type="hidden" min="0" max="1" name="zrychlenie" id="zrychlenie" value="0" />
 
-            <label for="angle"><?php echo SLOW ?></label>
+                    <label for="angle"><?php echo SLOW ?></label>
                     <input type="range" min="0" max="1000" value="0" class="slider" id="myRange" />
-            <input type="range" min="0" max="1000" value="0" class="slider" id="myRange" />
+                    <input type="range" min="0" max="1000" value="0" class="slider" id="myRange" />
 
-            <label for="animacia"><?php echo ANIMACIA ?></label>
+                    <label for="animacia"><?php echo ANIMACIA ?></label>
                     <input type="checkbox" name="animacia" id="animacia" checked="" />
-            <input type="checkbox" name="animacia" id="animacia" checked="" />
-            <label for="graf"><?php echo GRAF ?></label>
+                    <input type="checkbox" name="animacia" id="animacia" checked="" />
+                    <label for="graf"><?php echo GRAF ?></label>
                     <input type="checkbox" name="graf" id="graf" checked="" />
-            <input type="checkbox" name="graf" id="graf" checked="" />
+                    <input type="checkbox" name="graf" id="graf" checked="" />
 
                     <button id="btn" type="submit" name="btn" class="btn btn-primary">Start</button>
                 </form>
-
-        
-                    style="
-                        position: absolute;
-                        left: 0px;
-                        top: -20000px;
-                        padding: 0px;
-                        margin: 0px;
-                        border: none;
-                        white-space: pre;
-                        line-height: normal;
-                        font-family: Helvetica, sans-serif;
-                        font-size: 10px;
-                        font-weight: normal;
-                        display: none;
-                    "
-                >
             </div>
         </div>
         <?php require_once "../footer.php"; ?>
