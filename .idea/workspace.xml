@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dfc74f5e-da96-443f-9690-b2e4d3dbaf5d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moricz/forChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/moricz/forChart.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +76,7 @@
       <workItem from="1591458415466" duration="1677000" />
       <workItem from="1591461853269" duration="14139000" />
       <workItem from="1591547015483" duration="6500000" />
+      <workItem from="1591618407764" duration="2046000" />
     </task>
     <task id="LOCAL-00001" summary="davam index moj -adam">
       <created>1591289424198</created>
