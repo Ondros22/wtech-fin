@@ -39,13 +39,10 @@
 
                     <label for="angle"><?php echo SLOW ?></label>
                     <input type="range" min="0" max="1000" value="0" class="slider" id="myRange" />
-                    <input type="range" min="0" max="1000" value="0" class="slider" id="myRange" />
 
                     <label for="animacia"><?php echo ANIMACIA ?></label>
                     <input type="checkbox" name="animacia" id="animacia" checked="" />
-                    <input type="checkbox" name="animacia" id="animacia" checked="" />
                     <label for="graf"><?php echo GRAF ?></label>
-                    <input type="checkbox" name="graf" id="graf" checked="" />
                     <input type="checkbox" name="graf" id="graf" checked="" />
 
                     <button id="btn" type="submit" name="btn" class="btn btn-primary">Start</button>
