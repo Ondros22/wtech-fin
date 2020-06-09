@@ -22,9 +22,10 @@ if (is_ajax()) {
       case "kyvadlo": kyvadlo($_POST['uhol'],$_POST['position'],$_POST['r']); break;
       case "gulicka": gulicka($_POST['rychlost'],$_POST['zrychlenie'],$_POST['r']); break;
       case "tlmic": tlmic($_POST['x1'],$_POST['x1d'],$_POST['x2'],$_POST['x2d'],$_POST['r']); break;
-      case "lietadlo": lietadlo($_POST['alpha'],$_POST['q'],$_POST['theta'],$_POST['r']); break;
+      case "lietadlo": lietadlo($_POST['naklon1'], $_POST['naklon2']); break;
       case "calcul": calcul($_POST['txt']); break;
       case "pdfLog": pdf_download($_POST['name']); break;
+      case "docexp": pdf_doc($_POST['name'],$_POST['txt'] ); break;
       case "statistika": statistika($_POST['lang']); break;
       case "mail": sendMail($_POST['to'],$_POST['data']); break;
       case 'select': array_to_csv_download($_POST['name']); break;
@@ -39,7 +40,6 @@ if (is_ajax()) {
 function is_ajax() {
   return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 }
-
 
   function kyvadlo($uhol,$position,$r){
     $command = 'octave -q ./scripts/kyvadlo.txt '.$position.' '.$uhol.' '.$r.' 2>&1|  tr -s " " ';
@@ -122,22 +122,27 @@ function is_ajax() {
     echo json_encode($outputt);
   }
 
-  function lietadlo($alpha,$q, $theta, $r){
-    $command = 'octave -q ./scripts/lietadlo.txt '.$alpha.' '.$q.' '.$theta.' '.$r.' 2>&1|  tr -s " " ';
+  function lietadlo($naklon1, $naklon2){
+    if(!is_numeric($naklon1) || $naklon1 < -round(pi()/4, 2) && $naklon1 > round(pi()/4, 2)) $naklon1 = 0.5;
+    if(!is_numeric($naklon2) || $naklon2 < -round(pi()/4, 2) && $naklon2 > round(pi()/4, 2)) $naklon2 = 0.5;
+
+    $command = 'octave -q ./scripts/lietadlo.txt '.$naklon1.' '.$naklon2.' 2>&1|  tr -s " " ';
     exec($command , $output , $return_var);
-    $outputt = array();
+
+    $data = array();
     $count = 0;
     $tmp = -1;
     for ($i = 0; $i <= count($output)-1; $i++) {
       if($output[$i] == "") continue;
       if($output[$i] == "ans =" ) {
         $count = 0;
-        $tmp += 1;
+        $tmp++;
         continue;
       }
-       $outputt[$count][$tmp] = $output[$i];
+      $data[$count][$tmp] = $output[$i];
       $count += 1;
     }
+
     $result = "OK";
     if(substr( $output[0], 0, 6 ) === "error:"){
       $result = "ERROR: ".$return_var." ";
@@ -145,8 +150,9 @@ function is_ajax() {
         $result = $result.$out;
       }
     }
-    logData("lietadlo", array($alpha, $q, $tetha, $r,""), $result);
-    echo json_encode($outputt);
+    
+    logData("lietadlo", array($naklon1, $naklon2), $result);
+    echo json_encode($data);
   }
 
   function calcul($eval){
@@ -304,4 +310,40 @@ function sendMail($to, $data){
     echo "Email sent successfully";
   }
 }
+
+function pdf_doc($name, $txt) {
+  header('Content-Type: application/pdf');
+  header('Content-Disposition: attachment; filename="'.$name.'";');
+  header('Expires: 0');
+  header('FileName: '.$name.'.pdf');
+  header('Cache-Control: must-revalidate');
+  header('Pragma: public');
+
+  $txt = '<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+     <style>
+     body {
+      font-family: freesans;
+    }
+    table, td, th{
+      border:1px solid black;
+      cellpadding:0;
+      cellspacing:0;
+      border-collapse:collapse;
+    }
+     </style>
+  </head>
+  <body>'.$txt.'</body></html>';
+  $html2pdf = new Html2Pdf('P', 'A3', 'cs', true, 'UTF-8', array(5, 5, 5, 8), true);
+  //$html2pdf->addFont('myfont', '', '/home/ondro/workspace/wtech2/final_zadanie/vendor/tecnickcom/tcpdf/fonts/myfont.php' );
+  //$html2pdf->setDefaultFont('freesans'); 
+  $html2pdf->writeHTML($txt);
+  $tetst =$html2pdf->output(substr($name, 0, -3).'pdf', 'S');
+  
+  echo $tetst;
+  } 
 ?>

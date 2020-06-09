@@ -1,0 +1,51 @@
+.center{
+    display: flex;
+    justify-content: center;
+}
+.left{
+    float: left;
+    margin-left: 3%;
+}
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 30vh;
+    width: 30vw;
+}
+.right{
+
+    float: right;
+    margin-right: 3%;
+}
+.right:after{
+    content: "";
+    clear: both;
+}
+.error{
+    background-color: red;
+    color: white;
+}
+#error{
+    margin-top: 10px;
+    padding: 5px;
+    visibility: hidden;
+}
+.input-group label {
+    display: block;
+    text-align: center;
+    margin: 3px;
+}
+.input-group input {
+    height: 30px;
+    width: 93%;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+.main{
+    padding: 20px;
+    border: 1px solid #B0C4DE;
+    background: white;
+    border-radius: 10px;
+}
