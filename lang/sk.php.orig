@@ -12,11 +12,18 @@
     define('BALL', 'Gulôčka');
     define('SUSPENSION', 'Tlmič');
 
-    define('SUSPENSION_TITLE', 'Moricz - Tlmič');
+<<<<<<< HEAD
+    define('AIRPLANE_TITLE', 'Pastorek - lietadlo');
     define('SUSPENSION_TITLE', 'Morics - tlmič');
     define('PENDULUM_TITLE', 'Straka - kyvadlo');
     define('BALL_TITLE', 'Strba - gulôčka');
 
+=======
+    define('SUSPENSION_TITLE', 'Moricz - Tlmič');
+    define('PENDULUM_TITLE', 'Straka - Kyvadlo');
+
+    define('AIRPLANE_TITLE', 'Pastorek - Lietadlo');
+>>>>>>> d53dee01ab92f178b5d7a00b59c2a3acb0d3abfa
     define('TILT', 'Náklon');
     define('SPEED', 'Rýchlosť');
     define('ANIMATION', 'Animácia');

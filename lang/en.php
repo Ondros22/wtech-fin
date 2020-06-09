@@ -13,7 +13,7 @@
     define('SUSPENSION', 'Suspension');
 
     define('AIRPLANE_TITLE', 'Pastorek - Airplane');
-    define('SUSPENSION_TITLE', 'Morics - Suspension');
+    define('SUSPENSION_TITLE', 'Moricz - Suspension');
     define('PENDULUM_TITLE', 'Straka - Pendulum');
     define('BALL_TITLE', 'Strba - Ball');
 
@@ -28,6 +28,11 @@
     define('UPPER','Upper body');
     define('LOWER','Lower body');
     define('ERROR','Obstacle size must be in range of (-0.5 , 0.5)');
+
+    define('ZADAJeR','R(new position of ball , range: [-25,25])');
+    define('SLOW', 'Slow of animation');
+    define('Graf1','Current ball position  N*x(:,1) [Red graph]');
+    define('Graf2','Current inclination of bar x(:,3) [Green graph]');
 
     define('GRAF', 'Chart');
     define('UHOL', 'Angle');
