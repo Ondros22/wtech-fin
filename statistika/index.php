@@ -18,12 +18,20 @@
     </head>
     <body>
         <?php require_once "../header.php"; ?>
-        <div id="chart1" style="height: 450px;"></div>
-        <form action="" id="mailForm" style="display: block;">
-            <label for="mail">Email</label>
-            <input type="email" name="mail" id="mail" />
-            <input type="submit" value="send" />
-        </form>
+        <div class="justify-content-center my-3 pb-5">
+            <div class="container col-4 mb-3 text-center">
+                <div id="chart1" style="height: 450px;"></div>
+                <form action="" id="mailForm">
+                    <div class="form-group">
+                        <label for="mail">Email:</label>
+                        <input id="mail" type="email" name="mail" class="form-control col-xs-2" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary form-control">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <?php require_once "../footer.php"; ?>
         <script>
             $(document).ready(function () {

@@ -18,22 +18,37 @@
 </head>
 <body>
     <?php require_once "./header.php"; ?>
-    <table class="u-full-width">
-        <thead>
-            <th style='padding-left:50px;'><?php echo MENO?></th>
-            <th style="text-align:center" colspan="2"><?php echo AKCIA?></th>
-        </thead>
-        <tbody>
-            <?php
-                foreach($arr as $file){
-                    if($file == "." || $file == "..") continue;
-                    echo "<tr>";
-                    echo "<td style='padding-left:25px;'>".$file."</td><td class='link' onclick='csvDownload(this);' value='".$file."'>CSV</td><td class='link' onclick='pdfDownload(this);' value='".$file."'>PDF</td>";
-                    echo "</tr>";
-                }
-            ?>
-        </tbody>
-    </table>
+    <div class="justify-content-center my-3 pb-5">
+        <div class="container col-2 mb-3" style="margin: auto;">
+            <div class="form-group">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col"><?php echo NAME?></th>
+                            <th scope="col"><?php echo ACTION?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                        $i = 1;
+                        foreach($arr as $file){
+                            if($file == "." || $file == "..") continue;
+                            echo "<tr>";
+                            echo "<td>".$i++."</td>";
+                            echo "<td>".$file."</td>";
+                            echo "<td>";
+                            echo "<a class='link' href='#' onclick='csvDownload(this);' value='".$file."'>CSV</a> - ";
+                            echo "<a class='link' href='#' onclick='pdfDownload(this);' value='".$file."'>PDF</a>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     <?php require_once "./footer.php"; ?>
     <script>
         $(document).ready(function () {

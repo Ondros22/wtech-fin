@@ -16,16 +16,22 @@
     </head>
     <body>
         <?php require_once "../header.php"; ?>
-        <form action="" id="calcul">
-            <label class="first" for="inp"><?php echo VSTUP;?>:</label>
-            <label for="oup"><?php echo VYSTUP;?>:</label>
-            <br />
-            <div class="areas">
-                <textarea name="inp" id="inp" cols="30" rows="10"></textarea>
-                <textarea name="oup" id="oup" cols="30" rows="10" readonly></textarea>
+        <div class="justify-content-center my-3 pb-5">
+            <div class="container col-8 mb-3 text-center">
+                <form action="" id="calcul">
+                    <label class="first" for="inp"><?php echo VSTUP;?>:</label>
+                    <label for="oup"><?php echo VYSTUP;?>:</label>
+                    <br />
+                    <div class="areas">
+                        <textarea class="form-control" name="inp" id="inp" rows="10" style="width:50%;"></textarea>
+                        <textarea class="form-control" name="oup" id="oup" rows="10" style="width:50%;" readonly></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" id="submit" class="btn btn-primary form-control"><?php echo VYPOCITAJ?></button>
+                    </div>
+                </form>
             </div>
-            <input type="submit" value="<?php echo VYPOCITAJ?>" id="submit" />
-        </form>
+        </div>
         <?php require_once "../footer.php"; ?>
         <script>
             $(document).ready(function () {
